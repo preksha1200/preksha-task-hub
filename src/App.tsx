@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Check, Circle, Moon, Paperclip, Edit2, Trash2, FileText, Download, CheckSquare } from 'lucide-react';
+import { Check, Circle, Moon, Sun, Edit2, Trash2, FileText, Download, CheckSquare } from 'lucide-react';
 
 type Priority = 'High' | 'Medium' | 'Low';
 type FilterType = 'all' | 'active' | 'completed';
@@ -25,6 +25,19 @@ function App() {
   const [editingTask, setEditingTask] = useState<string | null>(null);
   const [editTitle, setEditTitle] = useState('');
   const [editNotes, setEditNotes] = useState('');
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Get dynamic greeting based on current time
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      return 'Good morning';
+    } else if (hour >= 12 && hour < 17) {
+      return 'Good afternoon';
+    } else {
+      return 'Good evening';
+    }
+  };
 
   // Sample tasks matching the Figma design
   const sampleTasks: Task[] = [
@@ -54,15 +67,32 @@ function App() {
     }
   ];
 
-  // Load tasks from localStorage or use sample tasks
+  // Load tasks from localStorage on component mount
   useEffect(() => {
     const savedTasks = localStorage.getItem('preksha_todos_v1');
     if (savedTasks) {
       setTasks(JSON.parse(savedTasks));
     } else {
+      // Set sample tasks on first load
       setTasks(sampleTasks);
     }
   }, []);
+
+  // Load theme from localStorage and apply to document
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('preksha_theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const shouldUseDark = savedTheme === 'dark' || (!savedTheme && prefersDark);
+    
+    setIsDarkMode(shouldUseDark);
+    document.documentElement.classList.toggle('dark', shouldUseDark);
+  }, []);
+
+  // Apply theme changes to document
+  useEffect(() => {
+    document.documentElement.classList.toggle('dark', isDarkMode);
+    localStorage.setItem('preksha_theme', isDarkMode ? 'dark' : 'light');
+  }, [isDarkMode]);
 
   // Save tasks to localStorage whenever tasks change
   useEffect(() => {
@@ -143,6 +173,10 @@ function App() {
     link.click();
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
+  };
+
+  const toggleTheme = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   const formatDate = () => {
@@ -259,14 +293,14 @@ function App() {
         {/* Header */}
         <header className="header">
           <div className="header-left">
-            <h1 className="greeting">Good evening, Preksha!</h1>
+            <h1 className="greeting">{getGreeting()}, Preksha!</h1>
             <p className="date">{formatDate()}</p>
           </div>
           <div className="header-right">
             <span className="task-counter active">{activeTasks.length} active</span>
             <span className="task-counter completed">{completedTasks.length} done</span>
-            <button className="theme-toggle">
-              <Moon className="icon" />
+            <button className="theme-toggle" onClick={toggleTheme}>
+              {isDarkMode ? <Sun className="icon" /> : <Moon className="icon" />}
             </button>
           </div>
         </header>
@@ -274,7 +308,10 @@ function App() {
         {/* Task Input */}
         <div className="task-input-section">
           <h2 className="section-title">Add New Task</h2>
-          <p className="section-subtitle">What would you like to accomplish today?</p>
+          <p className="section-subtitle">
+            What would you like to accomplish today?
+            <span className="muscle-icon" style={{ marginLeft: '8px', fontSize: '18px' }}>💪</span>
+          </p>
           
           <div className="priority-selector">
             <span className="priority-label">Priority Level</span>
@@ -304,7 +341,7 @@ function App() {
               className={`notes-toggle-btn ${showAdditionalNotes ? 'active' : ''}`}
               onClick={() => setShowAdditionalNotes(!showAdditionalNotes)}
             >
-              <Paperclip className="icon" />
+              <FileText className="icon" />
             </button>
             <button 
               onClick={addTask}
