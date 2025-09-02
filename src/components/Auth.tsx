@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Eye, EyeOff, CheckSquare, Moon, Sun } from 'lucide-react'
+import { Eye, EyeOff, Moon, Sun } from 'lucide-react'
 
 interface AuthProps {
   mode: 'signin' | 'signup'
@@ -78,7 +78,10 @@ export const Auth = ({ mode, onToggleMode }: AuthProps) => {
         {/* Header */}
         <div className="auth-header">
           <div className="auth-logo">
-            <CheckSquare className="auth-logo-icon" size={24} />
+            <svg className="auth-logo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="9,11 12,14 22,4"></polyline>
+              <path d="m21,3-1.5,1.5L7,17l-4.5-4.5L4,11l3,3L21,3z"></path>
+            </svg>
           </div>
           <h1 className="auth-title">
             Welcome to Donezo
