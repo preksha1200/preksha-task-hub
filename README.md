@@ -127,3 +127,83 @@ All tables have Row Level Security (RLS) enabled to ensure users can only access
 - **CORS Configuration**: Proper cross-origin request handling
 - **Input Validation**: TypeScript provides compile-time type safety
 - **Session Management**: Secure token handling via Supabase
+
+## 🧪 Testing & Quality Assurance
+
+### **Comprehensive Testing Suite**
+- **Unit Tests**: Component and hook testing with Vitest + React Testing Library
+- **Integration Tests**: Database operations and authentication flow testing
+- **End-to-End Tests**: Full user journey testing with Playwright
+- **Cross-Browser Testing**: Chrome, Firefox, Safari, and mobile devices
+- **Coverage Reporting**: Detailed test coverage metrics with HTML reports
+
+### **Testing Commands**
+```bash
+# Unit Tests
+npm run test              # Run tests in watch mode
+npm run test:run          # Run tests once
+npm run test:coverage     # Run with coverage report
+npm run test:ui           # Interactive test UI
+
+# End-to-End Tests
+npm run test:e2e          # Run E2E tests
+npm run test:e2e:ui       # Interactive E2E test UI
+npm run test:e2e:headed   # Run E2E tests with browser UI
+npm run test:e2e:debug    # Debug E2E tests
+
+# Quality Assurance
+npm run lint              # ESLint code quality check
+npm run type-check        # TypeScript type validation
+npm run ci                # Full CI pipeline (lint + type + test + build)
+npm run ci:full           # Complete CI with E2E tests
+```
+
+### **Test Coverage**
+- **Components**: Auth, TaskApp, TaskItem, TaskInput
+- **Hooks**: Authentication, task management, theme toggle
+- **User Flows**: Signup, login, task CRUD, filtering, export
+- **Responsive Design**: Mobile and desktop compatibility
+- **Error Handling**: Network failures, validation errors
+
+## 🚀 CI/CD Pipeline
+
+### **GitHub Actions Workflow**
+Automated quality assurance and deployment pipeline:
+
+- ✅ **Code Quality**: ESLint validation
+- ✅ **Type Safety**: TypeScript compilation check
+- ✅ **Unit Testing**: Component and integration tests
+- ✅ **E2E Testing**: Cross-browser user journey validation
+- ✅ **Build Verification**: Production build success
+- ✅ **Coverage Reporting**: Test coverage metrics
+- ✅ **Automated Deployment**: Vercel production deployment
+
+### **Multi-Node Testing Matrix**
+- Node.js 18.x and 20.x compatibility
+- Cross-platform testing (Ubuntu)
+- Parallel test execution for faster feedback
+
+### **Branch Protection**
+Main branch protected with required status checks:
+- All tests must pass
+- Code coverage requirements met
+- No TypeScript errors
+- Successful production build
+
+## 📊 Development Workflow
+
+### **Contributing**
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Make changes with tests: `npm run test:watch`
+4. Run full validation: `npm run ci:full`
+5. Commit changes: `git commit -m 'Add amazing feature'`
+6. Push to branch: `git push origin feature/amazing-feature`
+7. Open Pull Request (triggers CI/CD pipeline)
+
+### **Code Quality Standards**
+- **TypeScript**: Strict type checking enabled
+- **ESLint**: Comprehensive linting rules
+- **Testing**: Minimum 80% test coverage required
+- **Documentation**: All features documented in README
+- **Security**: No hardcoded secrets, proper environment variables
