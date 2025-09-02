@@ -1429,9 +1429,12 @@ code {
 
 .auth-logo-icon {
   color: white;
-  width: 24px;
-  height: 24px;
-  stroke-width: 2;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-title {
