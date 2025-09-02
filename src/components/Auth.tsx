@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext'
-import { Eye, EyeOff, Moon, Sun } from 'lucide-react'
+import { Eye, EyeOff, CheckSquare, Moon, Sun } from 'lucide-react'
 
 interface AuthProps {
   mode: 'signin' | 'signup'
@@ -77,9 +77,18 @@ export const Auth = ({ mode, onToggleMode }: AuthProps) => {
       <div className="auth-card">
         {/* Header */}
         <div className="auth-header">
-          <div className="auth-logo">
-            <span className="auth-logo-icon">✓</span>
-          </div>
+          <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: '3rem',
+              height: '3rem',
+              backgroundColor: '#6366f1',
+              borderRadius: '50%',
+              marginBottom: '1rem'
+            }}>
+              <CheckSquare size={24} style={{ color: 'white' }} />
+            </div>
           <h1 className="auth-title">
             Welcome to Donezo
           </h1>
