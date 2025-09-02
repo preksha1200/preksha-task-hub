@@ -876,8 +876,187 @@ code {
   margin: 0;
 }
 
-/* Responsive design */
-@media (max-width: 768px) {
+/* Comprehensive Responsive Design */
+
+/* Mobile First - Base styles for mobile */
+@media (max-width: 480px) {
+  .app {
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  
+  .sidebar {
+    width: 100%;
+    min-height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-color);
+    padding: 12px;
+    gap: 20px;
+  }
+  
+  .sidebar-section h3 {
+    font-size: 14px;
+  }
+  
+  .progress-bar {
+    height: 6px;
+  }
+  
+  .quick-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .quick-action-btn {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 44px; /* Touch target */
+  }
+  
+  .main-content {
+    padding: 12px;
+    flex: 1;
+  }
+  
+  .header {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .header-top {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+    width: 100%;
+  }
+  
+  .greeting {
+    font-size: 18px;
+  }
+  
+  .task-stats {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .stat-item {
+    font-size: 12px;
+  }
+  
+  .theme-toggle {
+    padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .input-section {
+    padding: 16px 12px;
+  }
+  
+  .input-row {
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+  }
+  
+  .task-input {
+    font-size: 16px; /* Prevents zoom on iOS */
+    padding: 12px;
+    min-height: 44px;
+  }
+  
+  .priority-select {
+    font-size: 16px;
+    padding: 12px;
+    min-height: 44px;
+  }
+  
+  .notes-toggle {
+    padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  .notes-textarea {
+    font-size: 16px;
+    padding: 12px;
+    min-height: 80px;
+  }
+  
+  .add-btn {
+    justify-content: center;
+    padding: 12px 16px;
+    min-height: 44px;
+    font-size: 14px;
+  }
+  
+  .filter-section {
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  
+  .filter-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .filter-tab {
+    padding: 8px 12px;
+    font-size: 12px;
+    min-height: 36px;
+  }
+  
+  .view-options {
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+  }
+  
+  .task-item {
+    padding: 12px;
+    margin-bottom: 8px;
+  }
+  
+  .task-content {
+    gap: 8px;
+  }
+  
+  .task-checkbox {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+  }
+  
+  .task-text {
+    font-size: 14px;
+  }
+  
+  .task-notes {
+    font-size: 12px;
+    margin-top: 4px;
+  }
+  
+  .task-actions {
+    gap: 4px;
+  }
+  
+  .task-action-btn {
+    padding: 6px;
+    min-height: 32px;
+    min-width: 32px;
+  }
+  
+  .priority-badge {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+}
+
+/* Small tablets and large phones */
+@media (min-width: 481px) and (max-width: 768px) {
   .app {
     flex-direction: column;
   }
@@ -885,8 +1064,21 @@ code {
   .sidebar {
     width: 100%;
     border-right: none;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid var(--border-color);
     padding: 16px;
+    gap: 24px;
+  }
+  
+  .quick-actions {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .quick-action-btn {
+    flex: 1;
+    min-width: 120px;
+    min-height: 44px;
   }
   
   .main-content {
@@ -899,19 +1091,135 @@ code {
     align-items: flex-start;
   }
   
+  .header-top {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .task-stats {
+    flex-direction: row;
+    gap: 16px;
+  }
+  
+  .input-row {
+    flex-direction: row;
+    gap: 12px;
+    align-items: flex-end;
+  }
+  
+  .task-input {
+    flex: 1;
+    font-size: 16px;
+  }
+  
+  .priority-select {
+    min-width: 120px;
+    font-size: 16px;
+  }
+  
   .filter-section {
     flex-direction: column;
     gap: 16px;
     align-items: flex-start;
   }
   
-  .input-row {
-    flex-direction: column;
-    align-items: stretch;
+  .filter-tabs {
+    flex-wrap: wrap;
+    gap: 8px;
   }
   
-  .add-btn {
-    justify-content: center;
+  .view-options {
+    flex-direction: row;
+    gap: 16px;
+    align-items: center;
+  }
+}
+
+/* Tablets and small desktops */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sidebar {
+    width: 240px;
+    padding: 20px;
+  }
+  
+  .main-content {
+    padding: 20px;
+  }
+  
+  .input-section {
+    max-width: 600px;
+  }
+  
+  .task-list {
+    max-width: 600px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1025px) {
+  .sidebar {
+    width: 280px;
+  }
+  
+  .main-content {
+    padding: 24px;
+  }
+  
+  .input-section {
+    max-width: 700px;
+  }
+  
+  .task-list {
+    max-width: 700px;
+  }
+}
+
+/* Ultra-wide screens */
+@media (min-width: 1440px) {
+  .main-content {
+    padding: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .input-section {
+    max-width: 800px;
+  }
+  
+  .task-list {
+    max-width: 800px;
+  }
+}
+
+/* Landscape phone orientation */
+@media (max-height: 500px) and (orientation: landscape) {
+  .sidebar {
+    display: none; /* Hide sidebar in landscape on small screens */
+  }
+  
+  .main-content {
+    padding: 8px 16px;
+  }
+  
+  .header {
+    gap: 8px;
+  }
+  
+  .input-section {
+    padding: 12px;
+  }
+}
+
+/* High DPI displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .task-checkbox {
+    border-width: 1px;
+  }
+  
+  .priority-badge {
+    border-width: 1px;
   }
 }
 
@@ -985,11 +1293,36 @@ button {
   transition: all 0.15s ease;
 }
 
-/* Mobile Responsive */
+/* Additional Mobile Optimizations */
 @media (max-width: 640px) {
   .max-w-2xl { max-width: 100%; }
   .px-4 { padding-left: 1rem; padding-right: 1rem; }
   .text-3xl { font-size: 1.5rem; line-height: 2rem; }
+  
+  /* Ensure all interactive elements meet touch target requirements */
+  button, .task-checkbox, .filter-tab, .priority-select {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Improve text readability on small screens */
+  body {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  /* Better spacing for mobile */
+  .task-item {
+    margin-bottom: 12px;
+  }
+  
+  /* Optimize input fields for mobile keyboards */
+  input[type="text"], textarea {
+    font-size: 16px; /* Prevents zoom on iOS */
+    -webkit-appearance: none;
+    appearance: none; /* Standard property for compatibility */
+    border-radius: 8px;
+  }
 }
 
 /* Animations */
