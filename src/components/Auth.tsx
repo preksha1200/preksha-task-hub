@@ -172,9 +172,6 @@ export const Auth = ({ mode, onToggleMode }: AuthProps) => {
                 />
                 <span className="auth-checkbox-text">Remember me</span>
               </label>
-              <button type="button" className="auth-forgot-link">
-                Forgot password?
-              </button>
             </div>
           )}
 
