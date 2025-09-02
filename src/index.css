@@ -1429,6 +1429,9 @@ code {
 
 .auth-logo-icon {
   color: white;
+  width: 24px;
+  height: 24px;
+  stroke-width: 2;
 }
 
 .auth-title {

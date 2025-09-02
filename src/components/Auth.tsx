@@ -81,7 +81,7 @@ export const Auth = ({ mode, onToggleMode }: AuthProps) => {
             <CheckSquare className="auth-logo-icon" size={24} />
           </div>
           <h1 className="auth-title">
-            Donezo
+            Welcome to Donezo
           </h1>
           <p className="auth-subtitle">
             {mode === 'signin' ? 'Sign in to your account' : 'Create your account to get started'}
