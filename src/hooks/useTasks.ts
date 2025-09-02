@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { Task, Priority } from '../types';
+import type { Task, Priority } from '../types';
 
 const STORAGE_KEY = 'preksha_todos_v1';
 

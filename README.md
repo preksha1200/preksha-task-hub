@@ -1,4 +1,4 @@
-# Preksha's Task Hub ✅
+# Donezo ✅
 
 A beautiful, production-ready task management web app built with React + Vite + TypeScript, featuring a modern sidebar design, vibrant priority system, and comprehensive task management functionality.
 
@@ -9,7 +9,7 @@ A beautiful, production-ready task management web app built with React + Vite + 
 - **Vibrant Priority System**: Bold red, orange, and green colors for High/Medium/Low priorities
 - **Dynamic Progress Bar**: Visual progress tracking with gradient fill
 - **Custom Favicon**: Purple CheckSquare icon matching app branding
-- **Professional Branding**: "Preksha's Task Hub" throughout the interface
+- **Professional Branding**: "Donezo" throughout the interface
 
 ### 📝 Task Management
 - **Complete CRUD Operations**: Add, edit, delete, and toggle task completion

@@ -991,3 +991,9 @@ button {
   .px-4 { padding-left: 1rem; padding-right: 1rem; }
   .text-3xl { font-size: 1.5rem; line-height: 2rem; }
 }
+
+/* Animations */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
