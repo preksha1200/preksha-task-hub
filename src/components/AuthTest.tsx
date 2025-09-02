@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { supabase } from '../lib/supabase'
 
 export const AuthTest = () => {
@@ -15,7 +15,7 @@ export const AuthTest = () => {
       setResult(prev => prev + '\n✅ Supabase client exists')
       
       // Test 2: Simple query
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('profiles')
         .select('count')
         .limit(1)
@@ -28,7 +28,7 @@ export const AuthTest = () => {
       
       // Test 3: Auth signup
       const testEmail = `test${Date.now()}@example.com`
-      const { data: authData, error: authError } = await supabase.auth.signUp({
+      const { error: authError } = await supabase.auth.signUp({
         email: testEmail,
         password: 'testpassword123'
       })
