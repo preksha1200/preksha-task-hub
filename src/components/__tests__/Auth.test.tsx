@@ -3,11 +3,7 @@ import { render, screen, fireEvent, waitFor } from '../../test/test-utils'
 import { Auth } from '../Auth'
 import { mockSupabase } from '../../test/test-utils'
 
-// Mock props for Auth component
-const mockProps = {
-  mode: 'signin' as const,
-  onToggleMode: vi.fn(),
-}
+// Mock props for Auth component (removed unused mockProps)
 
 describe('Auth Component', () => {
   beforeEach(() => {
@@ -15,7 +11,8 @@ describe('Auth Component', () => {
   })
 
   it('renders login form by default', () => {
-    render(<Auth {...mockProps} />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     expect(screen.getByText('Welcome to Donezo')).toBeInTheDocument()
     expect(screen.getByLabelText(/email/i)).toBeInTheDocument()
@@ -24,8 +21,8 @@ describe('Auth Component', () => {
   })
 
   it('toggles between sign in and sign up modes', async () => {
-    const signupProps = { ...mockProps, mode: 'signup' as const }
-    render(<Auth {...signupProps} />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     // Initially shows sign in
     expect(screen.getByRole('button', { name: /sign in/i })).toBeInTheDocument()
@@ -40,7 +37,8 @@ describe('Auth Component', () => {
   })
 
   it('validates required fields', async () => {
-    render(<Auth {...mockProps} />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     const signInButton = screen.getByRole('button', { name: /sign in/i })
     fireEvent.click(signInButton)
@@ -58,7 +56,8 @@ describe('Auth Component', () => {
       error: null
     })
 
-    render(<Auth />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: 'test@example.com' }
@@ -83,7 +82,8 @@ describe('Auth Component', () => {
       error: { message: 'Invalid credentials' }
     })
 
-    render(<Auth />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: 'test@example.com' }
@@ -104,7 +104,8 @@ describe('Auth Component', () => {
       () => new Promise(resolve => setTimeout(resolve, 100))
     )
 
-    render(<Auth />)
+    const mockToggleMode = vi.fn()
+    render(<Auth mode="signin" onToggleMode={mockToggleMode} />)
     
     fireEvent.change(screen.getByLabelText(/email/i), {
       target: { value: 'test@example.com' }

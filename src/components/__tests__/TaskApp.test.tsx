@@ -7,14 +7,18 @@ describe('TaskApp Component', () => {
   beforeEach(() => {
     vi.clearAllMocks()
     
-    // Mock successful task loading
+    // Mock successful task loading with complete Supabase client
     mockSupabase.from.mockReturnValue({
       select: vi.fn().mockReturnThis(),
+      insert: vi.fn().mockReturnThis(),
+      update: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       order: vi.fn().mockResolvedValue({
         data: mockTasks,
         error: null
-      })
+      }),
+      single: vi.fn().mockResolvedValue({ data: null, error: null })
     })
   })
 
@@ -88,8 +92,13 @@ describe('TaskApp Component', () => {
     })
     
     mockSupabase.from.mockReturnValue({
-      insert: mockInsert,
       select: vi.fn().mockReturnThis(),
+      insert: mockInsert,
+      update: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
+      eq: vi.fn().mockReturnThis(),
+      order: vi.fn().mockReturnThis(),
+      single: vi.fn().mockReturnThis()
     })
 
     render(<TaskApp />)
@@ -122,10 +131,14 @@ describe('TaskApp Component', () => {
     // Mock loading state
     mockSupabase.from.mockReturnValue({
       select: vi.fn().mockReturnThis(),
+      insert: vi.fn().mockReturnThis(),
+      update: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       order: vi.fn().mockImplementation(
         () => new Promise(resolve => setTimeout(resolve, 100))
-      )
+      ),
+      single: vi.fn().mockReturnThis()
     })
 
     render(<TaskApp />)
@@ -136,11 +149,15 @@ describe('TaskApp Component', () => {
   it('handles database errors gracefully', async () => {
     mockSupabase.from.mockReturnValue({
       select: vi.fn().mockReturnThis(),
+      insert: vi.fn().mockReturnThis(),
+      update: vi.fn().mockReturnThis(),
+      delete: vi.fn().mockReturnThis(),
       eq: vi.fn().mockReturnThis(),
       order: vi.fn().mockResolvedValue({
         data: null,
         error: { message: 'Database error' }
-      })
+      }),
+      single: vi.fn().mockReturnThis()
     })
 
     render(<TaskApp />)
