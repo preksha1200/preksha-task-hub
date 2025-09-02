@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Check, Circle, Moon, Sun, Edit2, Trash2, FileText, Download, CheckSquare, LogOut, User } from 'lucide-react';
+import { Check, Circle, Moon, Sun, Edit2, Trash2, FileText, Download, CheckSquare, LogOut, User, Menu, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 import { supabase } from '../lib/supabase';
 import type { Database } from '../lib/supabase';
@@ -24,6 +24,7 @@ export const TaskApp = () => {
   const [editNotes, setEditNotes] = useState('');
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   // Get dynamic greeting based on current time
   const getGreeting = () => {
@@ -266,8 +267,14 @@ export const TaskApp = () => {
 
   return (
     <div className="app">
+      {/* Sidebar Scrim for mobile */}
+      <div 
+        className={`sidebar-scrim ${sidebarOpen ? 'open' : ''}`}
+        onClick={() => setSidebarOpen(false)}
+      ></div>
+      
       {/* Sidebar */}
-      <div className="sidebar">
+      <div className={`sidebar ${sidebarOpen ? 'open' : ''}`}>
         <div className="sidebar-header">
           <div className="logo">
             <CheckSquare className="logo-icon" />
@@ -365,8 +372,17 @@ export const TaskApp = () => {
         {/* Header */}
         <header className="header">
           <div className="header-left">
-            <h1 className="greeting">{getGreeting()}, {user?.user_metadata?.full_name || 'Preksha'}!</h1>
-            <p className="date">{formatDate()}</p>
+            <button 
+              className="hamburger-btn"
+              onClick={() => setSidebarOpen(!sidebarOpen)}
+              aria-label="Toggle sidebar"
+            >
+              {sidebarOpen ? <X className="icon" /> : <Menu className="icon" />}
+            </button>
+            <div className="header-content">
+              <h1 className="greeting">{getGreeting()}, {user?.user_metadata?.full_name || 'Preksha'}!</h1>
+              <p className="date">{formatDate()}</p>
+            </div>
           </div>
           <div className="header-right">
             <div className="task-counters">
@@ -386,7 +402,7 @@ export const TaskApp = () => {
         </header>
 
         {/* Task Input */}
-        <div className="task-input-section">
+        <div className="input-section sticky">
           <h2 className="section-title">Add New Task</h2>
           <p className="section-subtitle">
             What would you like to accomplish today?
